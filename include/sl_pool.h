@@ -28,7 +28,7 @@ private:
 	unsigned int mui_NumberOfBlocks; // ! < Number of blocks in my SLPool
 	Block * mp_Pool; // ! < Head of list .
 	Block mr_Sentinel; // ! < End of the list .
-	Forward_list <Block> * flist;
+	Forward_list <Block> flist;
 
 public:
 	explicit SLPool ( size_t );

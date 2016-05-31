@@ -12,11 +12,11 @@ SLPool::SLPool ( size_t bytes = 224 ) {
 
 	mr_Sentinel.mp_Next = mp_Pool;
 
-	flist = new Block;
+	//flist.push_back(mr_Sentinel);
 
-	flist.push_back(mr_Sentinel);
+	//flist.push_front(mp_Pool);
 
-	flist.push_front(mp_Pool);
+	//flist.push_back(mp_Pool);
 
 	std::cout << "Number of bytes: " << bytes << "\n";
 	std::cout << "Number of Blocks: " << mui_NumberOfBlocks << "\n";
