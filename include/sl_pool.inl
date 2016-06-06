@@ -160,7 +160,7 @@ void SLPool::Free ( void * ptReserved ){
 	//std::cout << ptReserved << std::endl;
 	//std::cout << ptPostReserved << std::endl;
 	
-	while (ptPostReserved != NULL and ptPostReserved->mp_Next < ptReserved){
+	while (ptPostReserved != NULL and ptPostReserved->mp_Next < ptBlockReserved){
 		ptPrevReserved = ptPostReserved;
 		ptPostReserved = ptPostReserved->mp_Next;
 	}
@@ -169,37 +169,15 @@ void SLPool::Free ( void * ptReserved ){
 		std::cout << "Liberando área sem coisas adjacentes.\n";
 		ptBlockReserved->mp_Next = ptPostReserved;
 		ptPrevReserved->mp_Next = ptBlockReserved;
-		return;
 	} else ptPostReserved = ptPostReserved->mp_Next;
-	
-	
-	if (ptBlockReserved+ptBlockReserved->mui_Length == ptPostReserved){
-		ptBlockReserved->mp_Next = ptPostReserved->mp_Next;
-		ptPrevReserved->mp_Next = ptBlockReserved;
-	}
-	else{
-		ptBlockReserved->mp_Next = ptPostReserved;
-		ptPrevReserved->mp_Next = ptBlockReserved;		
-	}
-	
-	if (ptBlockReserved-ptPrevReserved->mui_Length == ptPrevReserved){
-		// Áreas combinadas em uma só
-		ptBlockReserved->mp_Next = ptPrevReserved->mp_Next;
-		ptPrevReserved->mp_Next = ptBlockReserved;
-	}
-	else{
-		ptBlockReserved->mp_Next = ptPostReserved;
-		ptPrevReserved->mp_Next = ptBlockReserved;
-	}
-	
 	
 	// Não faço ideia do q to fazendo, sao 03:43 da manha ne
 	//ptBlockReserved->mp_Next = ptPostReserved;
 	//ptPrevReserved->mp_Next = ptBlockReserved;
 	
-	//if (ptPrevReserved == &mr_Sentinel) ptPrevReserved = mr_Sentinel.mp_Next;
+	if (ptPrevReserved == &mr_Sentinel) ptPrevReserved = mr_Sentinel.mp_Next;
 	
-	/*
+	
 	std::cout << ptPrevReserved << std::endl;
 	std::cout << ptReserved << std::endl;
 	std::cout << ptPostReserved << std::endl;
@@ -209,12 +187,6 @@ void SLPool::Free ( void * ptReserved ){
 	std::cout << ptBlockReserved-ptPrevReserved->mui_Length << std::endl;
 	
 	// SÓ FALTA AJEITAR AS COLAGENS DOS BLOCOS DE ACORDO COM CADA VERSÃO ABAIXO:
-	
-	if(ptBlockReserved-ptPrevReserved->mui_Length != ptPrevReserved and ptBlockReserved+ptBlockReserved->mui_Length != ptPostReserved){
-		std::cout << "mesmo tipo da primeira?" << std::endl;
-		ptBlockReserved->mp_Next = ptPostReserved;
-		ptPrevReserved->mp_Next = ptBlockReserved;
-	}	
 	
 	if(ptBlockReserved-ptPrevReserved->mui_Length == ptPrevReserved and ptBlockReserved+ptBlockReserved->mui_Length != ptPostReserved){
 		std::cout << "fuck ya\n";
@@ -232,7 +204,7 @@ void SLPool::Free ( void * ptReserved ){
 		std::cout << "or not?\n";
 		ptBlockReserved->mp_Next = ptPostReserved;
 		ptPrevReserved->mp_Next = ptBlockReserved;
-	}*/
+	}
 	/*
 	if ((ptBlockReserved-ptBlockReserved->mui_Length-ptPrevReserved->mui_Length) == ptPrevReserved and (ptBlockReserved+ptBlockReserved->mui_Length) == ptPostReserved){
 		std::cout << "Liberando área com duas áreas adjacentes.\n";
