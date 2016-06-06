@@ -1,12 +1,11 @@
 #ifndef SLPOOL_H
 #define SLPOOL_H
 
-#include <iostream>
+#include <cmath>
+#include <cassert>
 
-#include "storage_pool.h" // Initialize class storage pool
-#include "tag.h"		// Initialize struct tag
-#include "mempool_common.h" // Initialize operators new and delete
-#include "forward_list.h"
+#include "storage_pool.h"
+#include "mempool_common.h"
 
 class SLPool : public StoragePool {
 public:
@@ -27,8 +26,7 @@ public:
 private:
 	unsigned int mui_NumberOfBlocks; // ! < Number of blocks in my SLPool
 	Block * mp_Pool; // ! < Head of list .
-	Block mr_Sentinel; // ! < End of the list .
-	Forward_list <Block> flist;
+	Block & mr_Sentinel; // ! < End of the list .
 
 public:
 	explicit SLPool ( size_t );
@@ -38,6 +36,12 @@ public:
 	void * Allocate ( size_t );
 
 	void Free ( void * );
+	
+	void print ();
+	
+	void view();
+	
+	void * AllocateBest(size_t _bytes);	
 };
 
 #include "sl_pool.inl"

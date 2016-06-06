@@ -1,13 +1,19 @@
-#ifndef TAG_H
-#define TAG_H
+#ifndef MEMPOOL_COMMON_H
+#define MEMPOOL_COMMON_H
+
+#include "tag.h"
+#include "storage_pool.h"
 
 void * operator new ( size_t bytes , StoragePool & p ) {
+	//std::cout << "Using new 1.\n";
+	//std::cout << "Size of tag: " << sizeof ( Tag );
 	Tag * const tag = reinterpret_cast < Tag * > ( p.Allocate ( bytes + sizeof ( Tag )) );
 	tag->pool = &p; // skip sizeof tag to get the raw data - block .
 	return ( reinterpret_cast < void * >( tag + 1U ) );
 }
 
 void * operator new ( size_t bytes ) { // Regular new
+	//std::cout << "Using new 2.\n";
 	Tag *const tag = reinterpret_cast < Tag * >( std::malloc ( bytes + sizeof ( Tag )) );
 	tag->pool = nullptr; // skip sizeof tag to get the raw data - block .
 	return ( reinterpret_cast < void * >( tag + 1U ) );
