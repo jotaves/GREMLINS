@@ -1,5 +1,9 @@
 make:
+	
+first:
 	g++ -Wall -std=c++11 src/gremlins_drive.cpp -o bin/drive -I include/
+best:
+	g++ -Wall -std=c++11 src/gremlins_drive.cpp -o bin/drive -I include/ -D BEST
 run:
 	./bin/drive
 clean:

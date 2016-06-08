@@ -35,13 +35,11 @@ public:
 
 	void * Allocate ( size_t );
 
+	void * AllocateBest ( size_t _bytes );
+
 	void Free ( void * );
 	
-	void print ();
-	
-	void view();
-	
-	void * AllocateBest(size_t _bytes);	
+	void print ( void );
 };
 
 #include "sl_pool.inl"
