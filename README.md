@@ -17,9 +17,9 @@ A visualização dos espaços da memória são feitas através dos seguintes sí
 
 Alguns exemplos:
 ```
-[<><><><>] - A lista encadeada possui 1 elemento, nesse único elemento, há 4 blocos livres
-<!>[<><><>] - A lista encadeada possui 1 elemento. Nesse único elemento, há 3 blocos livres. Um bloco foi alocado (o primeiro).
-<!>[<>]<!>[<>] - A lista encadeada possui 2 elementos. Cada elemento possui 1 bloco livre. Dois blocos foram alocados (o primeiro e o terceiro)
+[<><><><>] -> A lista encadeada possui 1 elemento, nesse único elemento, há 4 blocos livres
+<!>[<><><>] -> A lista encadeada possui 1 elemento. Nesse único elemento, há 3 blocos livres. Um bloco foi alocado (o primeiro).
+<!>[<>]<!>[<>] -> A lista encadeada possui 2 elementos. Cada elemento possui 1 bloco livre. Dois blocos foram alocados (o primeiro e o terceiro)
 ```
 A necessidade da representação [] se dá para confirmar que, ao liberar todos os blocos alocados, a lista encadeada volte à situação inicial, em que possui 1 elemento:
 
@@ -57,7 +57,7 @@ Através do terminal, entre no diretório do projeto e digite:
 
 ## (Emotional) Support/Mana Provider
 ```cpp
-#ifndef MAIN_CPP // Just kidding
+#ifndef MAIN_CPP // Just kidding (inside joke)
 #define MAIN_CPP // #SomosTodosNalbert
 
 #include <iostream>
