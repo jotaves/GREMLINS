@@ -1,8 +1,15 @@
+/*!
+ *  @file sl_pool.h
+ *  @brief Clase SLPool
+ *  @copyright Copyright &copy; 2016. Todos os direitos reservados.
+ *
+ *  Arquivo com a classe do SLPool
+ */
+
 #ifndef SLPOOL_H
 #define SLPOOL_H
 
-#include <cmath>
-#include <cassert>
+#include <cmath> //< ceil
 
 #include "storage_pool.h"
 #include "mempool_common.h"
@@ -29,16 +36,39 @@ private:
 	Block & mr_Sentinel; // ! < End of the list .
 
 public:
+    /**
+     * @brief Construtor do SLPool
+     */
 	explicit SLPool ( size_t );
 	
+	/**
+     * @brief Destrutor do SLPool
+     */
 	~SLPool ();
-
+	
+	/**
+     * @brief Aloca a memória usando o algoritmo First Fit
+     * @param size_t Numero de bytes a ser alocado
+     * @return Um ponteiro para o início da área alocada
+     */
 	void * Allocate ( size_t );
-
+	
+    /**
+     * @brief Aloca a memoria usando o algoritmo do Best Fit
+     * @param _bytes Numero de bytes a ser alocado
+     * @return Um ponteiro para o inico da área alocada
+     */
 	void * AllocateBest ( size_t _bytes );
 
+	/**
+     * @brief Libera um espaço alocado
+     * @param Ponteiro pro início da área a ser desalocada
+     */
 	void Free ( void * );
 	
+	/**
+     * @brief Imprime uma representação da memória
+     */	
 	void print ( void );
 };
 
